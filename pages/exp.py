@@ -27,7 +27,7 @@ VID2URL = {
 # st.write(video_ids)
 # st.write(VID2URL)
 # assert 0
-N_SCENARIOS = 2
+N_SCENARIOS = 6
 N_VIDEOS = 4
 
 if "scenarios" not in st.session_state:
@@ -35,10 +35,10 @@ if "scenarios" not in st.session_state:
     scenarios_A = [
         {"idx": "1", "videos": [["1-1dd", "1-1dc"], ["1-1cc", "1-1cd"]]},
         {"idx": "2", "videos": [["1-3dd", "1-3dc"], ["1-3cc", "1-3cd"]]},
-        # {"idx": "3", "videos": [["2-1dd", "2-1dc"], ["2-1cc", "2-1cd"]]},
-        # {"idx": "4", "videos": [["2-3dd", "2-3dc"], ["2-3cc", "2-3cd"]]},
-        # {"idx": "5", "videos": [["3-2dd", "3-2dc"], ["3-2cc", "3-2cd"]]},
-        # {"idx": "6", "videos": [["3-3dd", "3-3dc"], ["3-3cc", "3-3cd"]]},
+        {"idx": "3", "videos": [["2-1dd", "2-1dc"], ["2-1cc", "2-1cd"]]},
+        {"idx": "4", "videos": [["2-3dd", "2-3dc"], ["2-3cc", "2-3cd"]]},
+        {"idx": "5", "videos": [["3-2dd", "3-2dc"], ["3-2cc", "3-2cd"]]},
+        {"idx": "6", "videos": [["3-3dd", "3-3dc"], ["3-3cc", "3-3cd"]]},
     ]
     scenarios_B = [
         {"idx": "1", "videos": [["1-1dd", "1-1dc"], ["1-1cc", "1-1cd"]]},
