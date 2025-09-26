@@ -27,7 +27,7 @@ VID2URL = {
 # st.write(video_ids)
 # st.write(VID2URL)
 # assert 0
-N_SCENARIOS = 1
+N_SCENARIOS = 6
 N_VIDEOS = 4
 
 if "scenarios" not in st.session_state:
