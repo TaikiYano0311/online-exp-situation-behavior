@@ -3,61 +3,62 @@ import datetime
 import pytz
 import streamlit as st
 
-if "agree" not in st.session_state:
-    st.session_state["agree"] = False
-
-if not st.session_state["agree"]:
-    st.title("はじめに")
-    with st.container(border=True):
-        st.header("実験概要")
+st.title("アンドロイドロボットによる相手と状況を考慮した接客対応の印象に関する調査[A]")
+with st.container(border=True):
         st.markdown(
             """
-            本実験は、ロボットの表情の自然さを調査することを目的としています。
-
-            ロボットの表情を見たあと、自然さに関する質問にご回答いただきます。所要時間は10分程度です。
+            この度は実験にご参加いただき、ありがとうございます。
+            """
+        )
+        st.header("本実験について")
+        st.markdown(
+            """
+            本実験では、アンドロイドロボットが接客を行っているビデオを見ていただき、その対応の印象を評価していただきます。
+            
+            次ページの「実験の手順」をよくお読みいただいた上、実験を開始してください。
+            
+            映像と音声が流れますので、スピーカー、イヤホン、ヘッドホン等のオーディオ機器をご用意ください。
+            
+            実験の所要時間はおよそ30～40分です。
             """
         )
 
-        st.header("同意書")
+        st.header("個人情報について")
         st.markdown(
             """
-            本実験では、性別の個人情報を収集いたします。これらはデータ解析の目的のみに使用し、それ以外の目的には一切使用いたしません。
+            こちらでご回答いただいた性別や年齢などの個⼈属性に関わる情報は、データ分析の⽬的以外には使⽤いたしません。
 
-            同意するボタンをクリックされた時点で、上記の内容をご理解のうえ、同意いただいたものとみなします。内容にご同意いただけない場合は、実験への参加をお控えいただき、画面を閉じてください。
+            
+
+            準備が整いましたら，次のページにお進みください。
             """
         )
-        if st.button(label="同意する"):
-            st.session_state["agree"] = True
-            st.rerun()
-else:
-    st.title("個人情報")
-    with st.container(border=True):
+    
+st.title("入力情報")
+with st.container(border=True):
         userid = st.text_input(
             label="ユーザーID", placeholder="ユーザーIDを半角で入力してください"
         )
         userid_re_input = st.text_input(
-            label="ユーザーIDの確認",
-            placeholder="もう一度ユーザーIDを半角で入力してください",
+            label="ユーザーIDの確認", placeholder="もう一度ユーザーIDを半角で入力してください",
         )
         gender = st.radio(
             label="性別",
-            options=["男性", "女性", "その他"],
-            horizontal=True,
-            index=None,
-        )
-        age = st.radio(
-            label="年齢",
-            options=["20代以下", "20代", "30代", "40代", "50代", "60代", "70代以上"],
+            options=["男性", "女性", "回答しない"],
             horizontal=True,
             index=None,
         )
 
+        age = st.text_input(
+            label="年齢", placeholder="年齢を半角で入力してください"
+        )
+
         if st.button(
-            label="提出", disabled=userid is None or gender is None or age is None
+            label="次へ", disabled=userid is None or gender is None or age is None
         ):
             if userid_re_input != userid:
                 st.warning(
-                    "2回入力されたユーザーIDが一致していません。ユーザーIDを再度ご確認ください。"
+                    "ユーザーIDが異なります。ご確認ください。"
                 )
             else:
                 st.session_state["userid"] = userid
@@ -67,3 +68,5 @@ else:
                     pytz.timezone("Asia/Tokyo")
                 ).strftime("%Y-%m-%d_%H-%M-%S")
                 st.switch_page("pages/intro.py")
+
+        

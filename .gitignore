@@ -1,3 +1,5 @@
 .streamlit/secrets.toml
 .vscode
+.venv
 data
+analysis.ipynb
