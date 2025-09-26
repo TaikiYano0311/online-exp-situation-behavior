@@ -6,7 +6,7 @@ st.warning(
 )
 
 comment = st.text_area(
-    label="コメント欄", placeholder="コメントがあれば入力してください"
+    label="コメント", placeholder="コメントがあれば入力してください"
 )
 
 if st.button(label="提出"):
