@@ -96,8 +96,8 @@ def on_form_submitted():
             st.session_state[f'q4_choice_{st.session_state["scenario_idx"]}_{idx}']
         )
         data["videos"][vids[idx]] = [q1_value, q2_value, q3_value, q4_value]
-    data["ranking"] = st.session_state[f'ranking_{st.session_state["scenario_idx"]}']
-    data["commend"] = st.session_state[f'comment_{st.session_state["scenario_idx"]}']
+    data["ranking"] = st.session_state[f'ranking_{st.session_state["scenario_idx"]}'] + f"_{vids[idx]}"
+    data["comment"] = st.session_state[f'comment_{st.session_state["scenario_idx"]}']
     st.session_state["log"].append(data)
 
     # Move to next
