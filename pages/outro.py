@@ -40,5 +40,5 @@ st.header("Crowd Works ユーザーへ")
 st.caption("Crowd Works以外のユーザーは無視してください。")
 st.text(
     "Crowd Worksの画面上で、合言葉を入れる欄に次のひらがな4文字を入力してください。\n\n"
-    "「ろぼっと」"
+    "「うけつけ」"
 )
