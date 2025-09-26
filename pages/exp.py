@@ -27,26 +27,26 @@ VID2URL = {
 # st.write(video_ids)
 # st.write(VID2URL)
 # assert 0
-N_SCENARIOS = 6
+N_SCENARIOS = 1
 N_VIDEOS = 4
 
 if "scenarios" not in st.session_state:
     # Initialize
     scenarios_A = [
-        {"idx": "1", "videos": [["1-1dd", "1-1dc"], ["1-1cc", "1-1cd"]]},
-        {"idx": "2", "videos": [["1-3dd", "1-3dc"], ["1-3cc", "1-3cd"]]},
-        {"idx": "3", "videos": [["2-1dd", "2-1dc"], ["2-1cc", "2-1cd"]]},
-        {"idx": "4", "videos": [["2-3dd", "2-3dc"], ["2-3cc", "2-3cd"]]},
-        {"idx": "5", "videos": [["3-2dd", "3-2dc"], ["3-2cc", "3-2cd"]]},
-        {"idx": "6", "videos": [["3-3dd", "3-3dc"], ["3-3cc", "3-3cd"]]},
+        {"idx": "1-1", "videos": [["1-1dd", "1-1dc"], ["1-1cc", "1-1cd"]]},
+        {"idx": "1-3", "videos": [["1-3dd", "1-3dc"], ["1-3cc", "1-3cd"]]},
+        {"idx": "2-1", "videos": [["2-1dd", "2-1dc"], ["2-1cc", "2-1cd"]]},
+        {"idx": "2-3", "videos": [["2-3dd", "2-3dc"], ["2-3cc", "2-3cd"]]},
+        {"idx": "3-2", "videos": [["3-2dd", "3-2dc"], ["3-2cc", "3-2cd"]]},
+        {"idx": "3-3", "videos": [["3-3dd", "3-3dc"], ["3-3cc", "3-3cd"]]},
     ]
     scenarios_B = [
-        {"idx": "1", "videos": [["1-1dd", "1-1dc"], ["1-1cc", "1-1cd"]]},
-        {"idx": "2", "videos": [["1-2dd", "1-2dc"], ["1-2cc", "1-2cd"]]},
-        {"idx": "3", "videos": [["2-2dd", "2-2dc"], ["2-2cc", "2-2cd"]]},
-        {"idx": "4", "videos": [["2-4dd", "2-4dc"], ["2-4cc", "2-4cd"]]},
-        {"idx": "5", "videos": [["3-1dd", "3-1dc"], ["3-1cc", "3-1cd"]]},
-        {"idx": "6", "videos": [["3-3dd", "3-3dc"], ["3-3cc", "3-3cd"]]},
+        {"idx": "1-1", "videos": [["1-1dd", "1-1dc"], ["1-1cc", "1-1cd"]]},
+        {"idx": "1-2", "videos": [["1-2dd", "1-2dc"], ["1-2cc", "1-2cd"]]},
+        {"idx": "2-2", "videos": [["2-2dd", "2-2dc"], ["2-2cc", "2-2cd"]]},
+        {"idx": "2-4", "videos": [["2-4dd", "2-4dc"], ["2-4cc", "2-4cd"]]},
+        {"idx": "3-1", "videos": [["3-1dd", "3-1dc"], ["3-1cc", "3-1cd"]]},
+        {"idx": "3-3", "videos": [["3-3dd", "3-3dc"], ["3-3cc", "3-3cd"]]},
     ]
     scenarios = scenarios_A
     # scenarios = scenarios_B
@@ -96,7 +96,7 @@ def on_form_submitted():
             st.session_state[f'q4_choice_{st.session_state["scenario_idx"]}_{idx}']
         )
         data["videos"][vids[idx]] = [q1_value, q2_value, q3_value, q4_value]
-    data["ranking"] = st.session_state[f'ranking_{st.session_state["scenario_idx"]}'] + f"_{vids[idx]}"
+    data["ranking"] = [f"{name}_{vids[idx]}" for idx, name in enumerate(st.session_state[f'ranking_{st.session_state["scenario_idx"]}'])]
     data["comment"] = st.session_state[f'comment_{st.session_state["scenario_idx"]}']
     st.session_state["log"].append(data)
 
