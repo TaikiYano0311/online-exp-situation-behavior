@@ -2,6 +2,8 @@ import random
 import time
 from functools import reduce
 
+
+
 def add(a, b):
     return a + b
 
@@ -22,6 +24,20 @@ video_ids = [
 VID2URL = {
     video_id: f"{folder}{video_id}.mp4"
     for video_id in video_ids
+}
+
+# Add mapping for idx to Japanese scenario description
+SCENARIO_MAP = {
+    "1-1": "入場受付・大人",
+    "1-2": "入場受付・子供  小学4年生",
+    "1-3": "入場受付・高齢者(軽度の難聴)",
+    "2-1": "迷子対応・大人",
+    "2-2": "迷子対応・子供 5歳",
+    "2-3": "迷子対応・子供 小学4年生",
+    "2-4": "迷子対応・高齢者(軽度の難聴)",
+    "3-1": "(いらだつ客への)苦情対応・大人",
+    "3-2": "(ぐずる客への)苦情対応・子供 5歳",
+    "3-3": "(いらだつ客への)苦情対応・高齢者(軽度の難聴)",
 }
 
 # st.write(video_ids)
@@ -60,6 +76,7 @@ if "scenarios" not in st.session_state:
     st.session_state["scenarios"] = scenarios
     st.session_state["scenario_idx"] = 0
     st.session_state["log"] = []
+    
 
 
 def choice_to_value(choice: str) -> int:
@@ -74,7 +91,6 @@ def choice_to_value(choice: str) -> int:
     #     case "B":
     #         value = -2
     return int(choice)
-
 
 def on_form_submitted():
     # Record choice
@@ -125,14 +141,29 @@ pbar = st.progress(0, text=f"進捗: {0}/{N_SCENARIOS}")
 
 @st.fragment
 def exp_fragment():
+    
     # Check if all completed
     if st.session_state["scenario_idx"] == N_SCENARIOS:
         # Move to next page
         st.switch_page("pages/comment.py")
 
     # Get sample info
-    vids = st.session_state["scenarios"][st.session_state["scenario_idx"]]["videos"]
+    #vids = st.session_state["scenarios"][st.session_state["scenario_idx"]]["videos"]
+    #urls = [VID2URL[vid] for vid in vids]
+
+    # Added ③
+    # Get sample info
+    scenario_index = st.session_state["scenario_idx"]
+    current_scenario = st.session_state["scenarios"][scenario_index]
+    vids = current_scenario["videos"]
     urls = [VID2URL[vid] for vid in vids]
+    scenario_idx_key = current_scenario["idx"]
+    scenario_description = SCENARIO_MAP.get(scenario_idx_key, "不明なシナリオ")
+
+    # Display experiment number and scenario description
+    with st.container(border=True):
+        st.subheader(f"実験{scenario_index + 1}〈{scenario_description}〉")
+        st.markdown(f"実験{scenario_index + 1}を開始します。")
 
     # Place interface
     with st.container(border=True):
@@ -141,7 +172,7 @@ def exp_fragment():
                 st.subheader(f"ビデオ{idx+1}")
                 st.video(url)
                 q1_choice = st.radio(
-                    "Q1: ロボットの動作や表情などを見て、人間らしいと感じましたか、それとも機械的だと感じましたか？\n\n1: 非常に機械的; . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7: 非常に人間らしい",
+                    "Q1: ロボットの話し方、表情、動きなどを見て、人間らしいと感じましたか、それとも機械的だと感じましたか？\n\n1: 非常に機械的; . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7: 非常に人間らしい",
                     options=[str(i) for i in range(1, 8)],
                     index=None,
                     key=f'q1_choice_{st.session_state["scenario_idx"]}_{idx}',
