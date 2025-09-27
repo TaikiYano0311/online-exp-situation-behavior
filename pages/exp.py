@@ -78,8 +78,8 @@ if "scenarios" not in st.session_state:
     # st.write(scenarios)
     st.session_state["scenarios"] = scenarios
     st.session_state["scenario_idx"] = 0
-    st.session_state["log"] = []
-    
+    # This variable has been already declared in tutorial page
+    # st.session_state["log"] = []
 
 
 def choice_to_value(choice: str) -> int:
