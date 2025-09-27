@@ -28,7 +28,7 @@ with st.status(
 
     # Write to Firestore collection
     st.write("Write data")
-    db.collection("250922-carlos-yano-situation-behaivor").add(doc_data)
+    db.collection("250922-carlos-yano-situation-behaivor-A").add(doc_data)
     status.update(label="ご回答は正常に記録されました。", state="complete")
 
 st.text(
@@ -36,9 +36,4 @@ st.text(
     "これで終了です。タブを閉じていただいて構いません。"
 )
 
-st.header("Crowd Works ユーザーへ")
-st.caption("Crowd Works以外のユーザーは無視してください。")
-st.text(
-    "Crowd Worksの画面上で、合言葉を入れる欄に次のひらがな4文字を入力してください。\n\n"
-    "「うけつけ」"
-)
+
