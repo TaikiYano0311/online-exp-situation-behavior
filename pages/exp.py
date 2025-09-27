@@ -8,6 +8,7 @@ def add(a, b):
     return a + b
 
 import streamlit as st
+from streamlit_scroll_to_top import scroll_to_here
 
 # random.seed(1234)
 
@@ -120,6 +121,7 @@ def on_form_submitted():
     st.session_state["scenario_idx"] += 1
     global VID2URL
     VID2URL = {k: v + f"?t={time.time()}" for k, v in VID2URL.items()}
+    scroll_to_here(0, "top")
 
 
 # Interface

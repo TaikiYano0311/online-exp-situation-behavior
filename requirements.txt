@@ -3,3 +3,4 @@ pandas
 numpy
 google-cloud-firestore
 pytz
+streamlit-scroll-to-top
