@@ -1,9 +1,5 @@
 import random
 import time
-from functools import reduce
-
-def add(a, b):
-    return a + b
 
 import streamlit as st
 from streamlit_scroll_to_top import scroll_to_here
