@@ -30,7 +30,7 @@ with st.container(border=True):
 
             ・ 各ビデオの長さは約30秒間です。
 
-            では、これより実験を始めます。次のページにお進みください。
+            本実験を始める前に、練習用のビデオを一つ評価してもらいます。
 
             """
         )
@@ -39,6 +39,6 @@ with st.container(border=True):
         "回答の仕方が明らかに不誠実と判断される場合は、報酬をお支払いできないことがあります。問題文をよく読み、ご理解いただいた上でご回答ください。"
         )
 
-next_button = st.button(label="実験へ")
+next_button = st.button(label="練習へ")
 if next_button:
-    st.switch_page("pages/exp.py")
+    st.switch_page("pages/tutorial.py")
