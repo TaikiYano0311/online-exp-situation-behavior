@@ -3,3 +3,5 @@
 .venv
 data
 analysis.ipynb
+graph-plot
+analysis_results
